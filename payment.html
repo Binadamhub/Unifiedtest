@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment - Unified Skill and Acquisition Training Center Ltd.</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- WhatsApp Float Button -->
+    <a href="https://wa.me/2347060654066" class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Header/Navigation -->
+    <header>
+        <div class="container">
+            <div class="logo-container">
+                <img src="logo.png" alt="Unified Skill and Acquisition Training Center Logo" class="logo">
+            </div>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="skills.html">Skills to Learn</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="register.html" class="register-btn">Register Now</a></li>
+                </ul>
+                <div class="hamburger">
+                    <div class="line"></div>
+                    <div class="line"></div>
+                    <div class="line"></div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Payment Banner -->
+    <section class="page-banner" style="background-image: url('images/payment-banner.jpg');">
+        <div class="container">
+            <h1>Complete Your Registration</h1>
+            <p>Make payment to secure your spot in the training program</p>
+        </div>
+    </section>
+
+    <!-- Payment Section -->
+    <section class="payment-section">
+        <div class="container">
+            <div class="payment-container">
+                <div class="payment-summary">
+                    <h2>Order Summary</h2>
+                    <div class="summary-item">
+                        <h3 id="payment-course-name">Course Name</h3>
+                        <p id="payment-course-duration">Duration: 3 Months</p>
+                        <p id="payment-course-schedule">Schedule: Mondays & Wednesdays, 10AM - 2PM</p>
+                        <div class="price">
+                            <span>Fee:</span>
+                            <span id="payment-course-fee">₦75,000</span>
+                        </div>
+                    </div>
+                    <div class="summary-total">
+                        <span>Total Amount:</span>
+                        <span id="payment-total-fee">₦75,000</span>
+                    </div>
+                    <div class="payment-instructions">
+                        <h3>Payment Instructions</h3>
+                        <ol>
+                            <li>Complete the payment form on this page</li>
+                            <li>You'll receive a payment confirmation via email/SMS</li>
+                            <li>Present your payment confirmation at our office to complete registration</li>
+                            <li>Training materials will be provided on your first day</li>
+                        </ol>
+                    </div>
+                </div>
+                
+                <div class="payment-form-container">
+                    <h2>Payment Information</h2>
+                    <form id="paymentForm" class="payment-form">
+                        <input type="hidden" id="course-name" name="course-name">
+                        <input type="hidden" id="course-fee" name="course-fee">
+                        <input type="hidden" id="applicant-name" name="applicant-name">
+                        <input type="hidden" id="applicant-email" name="applicant-email">
+                        
+                        <div class="form-group">
+                            <label for="payment-method">Payment Method</label>
+                            <select id="payment-method" name="payment-method" required>
+                                <option value="">Select Payment Method</option>
+                                <option value="card">Credit/Debit Card</option>
+                                <option value="transfer">Bank Transfer</option>
+                                <option value="ussd">USSD</option>
+                                <option value="wallet">Mobile Wallet</option>
+                            </select>
+                        </div>
+                        
+                        <!-- Card Payment Fields (shown when card is selected) -->
+                        <div id="card-fields" class="payment-method-fields" style="display: none;">
+                            <div class="form-group">
+                                <label for="card-number">Card Number</label>
+                                <input type="text" id="card-number" name="card-number" placeholder="1234 5678 9012 3456">
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="card-expiry">Expiry Date</label>
+                                    <input type="text" id="card-expiry" name="card-expiry" placeholder="MM/YY">
+                                </div>
+                                <div class="form-group">
+                                    <label for="card-cvv">CVV</label>
+                                    <input type="text" id="card-cvv" name="card-cvv" placeholder="123">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="card-name">Name on Card</label>
+                                <input type="text" id="card-name" name="card-name">
+                            </div>
+                        </div>
+                        
+                        <!-- Transfer Payment Fields -->
+                        <div id="transfer-fields" class="payment-method-fields" style="display: none;">
+                            <div class="bank-info">
+                                <h4>Bank Transfer Details</h4>
+                                <p><strong>Bank Name:</strong> Zenith Bank</p>
+                                <p><strong>Account Name:</strong> Unified Skill and Acquisition Training Center Ltd.</p>
+                                <p><strong>Account Number:</strong> 1012345678</p>
+                                <p><strong>Sort Code:</strong> 057</p>
+                            </div>
+                            <div class="form-group">
+                                <label for="transfer-proof">Upload Transfer Proof</label>
+                                <input type="file" id="transfer-proof" name="transfer-proof" accept="image/*,.pdf">
+                            </div>
+                            <div class="form-group">
+                                <label for="transfer-reference">Transfer Reference</label>
+                                <input type="text" id="transfer-reference" name="transfer-reference">
+                            </div>
+                        </div>
+                        
+                        <!-- USSD Payment Fields -->
+                        <div id="ussd-fields" class="payment-method-fields" style="display: none;">
+                            <div class="ussd-info">
+                                <h4>USSD Payment Instructions</h4>
+                                <ol>
+                                    <li>Dial *966*Amount*1012345678#</li>
+                                    <li>Follow the prompts to complete payment</li>
+                                    <li>Enter the transaction reference below</li>
+                                </ol>
+                            </div>
+                            <div class="form-group">
+                                <label for="ussd-reference">Transaction Reference</label>
+                                <input type="text" id="ussd-reference" name="ussd-reference">
+                            </div>
+                        </div>
+                        
+                        <!-- Mobile Wallet Fields -->
+                        <div id="wallet-fields" class="payment-method-fields" style="display: none;">
+                            <div class="form-group">
+                                <label for="wallet-type">Wallet Type</label>
+                                <select id="wallet-type" name="wallet-type">
+                                    <option value="">Select Wallet</option>
+                                    <option value="opay">OPay</option>
+                                    <option value="palmpay">PalmPay</option>
+                                    <option value="mtn">MTN MoMo</option>
+                                    <option value="airtel">Airtel Money</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="wallet-number">Wallet Number</label>
+                                <input type="text" id="wallet-number" name="wallet-number">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group checkbox-group">
+                            <input type="checkbox" id="payment-terms" name="payment-terms" required>
+                            <label for="payment-terms">I agree to the <a href="#">payment terms and conditions</a></label>
+                        </div>
+                        
+                        <button type="submit" class="btn">Complete Payment</button>
+                    </form>
+                    
+                    <div id="paymentSuccess" class="payment-success" style="display: none;">
+                        <i class="fas fa-check-circle"></i>
+                        <h3>Payment Successful!</h3>
+                        <p>Thank you for completing your registration. Your payment has been received.</p>
+                        <p>We've sent a confirmation to <span id="success-email"></span> with your enrollment details.</p>
+                        <div class="next-steps">
+                            <h4>Next Steps:</h4>
+                            <ol>
+                                <li>Check your email for payment confirmation</li>
+                                <li>Visit our office with your payment proof for documentation</li>
+                                <li>Attend orientation on the scheduled date</li>
+                            </ol>
+                        </div>
+                        <a href="index.html" class="btn">Back to Home</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="payment-help">
+                <h3>Need Help With Payment?</h3>
+                <div class="help-options">
+                    <div class="help-option">
+                        <i class="fas fa-phone"></i>
+                        <h4>Call Us</h4>
+                        <p>07060654066, 09028576203</p>
+                    </div>
+                    <div class="help-option">
+                        <i class="fab fa-whatsapp"></i>
+                        <h4>WhatsApp</h4>
+                        <p>Chat with our support team</p>
+                    </div>
+                    <div class="help-option">
+                        <i class="fas fa-envelope"></i>
+                        <h4>Email Us</h4>
+                        <p>usatc.ltd@gmail.com</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-col">
+                    <img src="images/logo-white.png" alt="Unified Skill and Acquisition Training Center Logo" class="footer-logo">
+                    <p>Empowering individuals with market-relevant skills for sustainable livelihoods.</p>
+                </div>
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="skills.html">Skills to Learn</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Contact Info</h3>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> SUIT B7, A.Y. MAIKIFI PLAZA, KANO</li>
+                        <li><i class="fas fa-phone"></i> 07060654066, 09028576203</li>
+                        <li><i class="fas fa-envelope"></i> usatc.ltd@gmail.com</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 Unified Skill and Acquisition Training Center Ltd. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="js/script.js"></script>
+    <script>
+        // Get course details from URL parameters
+        document.addEventListener('DOMContentLoaded', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            
+            // Set course details from URL parameters
+            if (urlParams.has('course')) {
+                const courseName = decodeURIComponent(urlParams.get('course'));
+                document.getElementById('payment-course-name').textContent = courseName;
+                document.getElementById('course-name').value = courseName;
+                
+                // Set fees based on course (in a real app, this would come from a database)
+                const courseFees = {
+                    "POP & Suspending": 65000,
+                    "Solar Installation": 85000,
+                    "Floor Cladding, Tiling & Interlocking": 70000,
+                    "Shoes Making": 60000,
+                    "Fashion Design and Garment Making (Tailoring)": 55000,
+                    "Graphics Design": 75000,
+                    "Creative Media (Digital Media Production)": 80000,
+                    "Livestock and Fish Farming": 65000,
+                    "Make-Up and Saloon": 60000,
+                    "Catering": 65000,
+                    "Computer Training and Web Development": 90000,
+                    "Welding and Fabrication": 75000,
+                    "Woodwork, Carpentry & Joinery": 70000,
+                    "Furniture Making, Upholstery, Blacksmithing": 80000
+                };
+                
+                const fee = courseFees[courseName] || 75000;
+                const formattedFee = '₦' + fee.toLocaleString('en-NG');
+                
+                document.getElementById('payment-course-fee').textContent = formattedFee;
+                document.getElementById('payment-total-fee').textContent = formattedFee;
+                document.getElementById('course-fee').value = fee;
+                
+                // Set duration based on course
+                const courseDurations = {
+                    "Computer Training and Web Development": "6 Months",
+                    "Creative Media (Digital Media Production)": "4 Months",
+                    "Furniture Making, Upholstery, Blacksmithing": "5 Months"
+                    // Default is 3 months for others
+                };
+                
+                const duration = courseDurations[courseName] || "3 Months";
+                document.getElementById('payment-course-duration').textContent = "Duration: " + duration;
+            }
+            
+            // Set applicant details if coming from registration
+            if (urlParams.has('name')) {
+                const name = decodeURIComponent(urlParams.get('name'));
+                document.getElementById('applicant-name').value = name;
+            }
+            
+            if (urlParams.has('email')) {
+                const email = decodeURIComponent(urlParams.get('email'));
+                document.getElementById('applicant-email').value = email;
+                document.getElementById('success-email').textContent = email;
+            }
+            
+            // Show/hide payment method fields
+            $('#payment-method').change(function() {
+                $('.payment-method-fields').hide();
+                const method = $(this).val();
+                if (method) {
+                    $('#' + method + '-fields').show();
+                }
+            });
+            
+            // Form submission
+            $('#paymentForm').submit(function(e) {
+                e.preventDefault();
+                
+                // Simulate payment processing
+                $(this).hide();
+                $('#paymentSuccess').fadeIn();
+                
+                // In a real implementation, you would process payment here
+                // This might involve calling a payment gateway API
+                /*
+                $.ajax({
+                    url: 'process-payment.php',
+                    type: 'POST',
+                    data: $(this).serialize(),
+                    success: function(response) {
+                        $('#paymentForm').hide();
+                        $('#paymentSuccess').fadeIn();
+                    },
+                    error: function() {
+                        alert('Payment failed. Please try again.');
+                    }
+                });
+                */
+            });
+        });
+    </script>
+</body>
+</html>
